@@ -59,10 +59,10 @@ export default class Popup extends Base {
       this.options.enabled = false
     }
     // apply blacklist / whitelist
-    if (this.options.blacklistPage.includes(location.pathname)) {
+    if (this.options.blacklistPage?.location && this.options.blacklistPage.includes(location.pathname)) {
       this.options.enabled = false
     }
-    if (this.options.whitelistPage.includes(location.pathname)) {
+    if (this.options.whitelistPage?.location && this.options.whitelistPage.includes(location.pathname)) {
       this.options.enabled = true
     }
 
@@ -596,7 +596,6 @@ export default class Popup extends Base {
       if (this.options.theme) {
         classes.push('cc-theme-'+this.options.theme)
       }
-      console.log( this.options.content.policy )
       const revokeBtn = this.options.revokeBtn
         .replace('{{classes}}', classes.join(' '))
         .replace('{{policy}}', this.options.content.policy)

@@ -27,8 +27,8 @@ export default {
   // each item defines the inner text for the element that it references
   content: {
     header : 'Cookies used on the website!',
-    message: 'This website uses cookies to ensure you get the best experience on our website.',
-    messageEnd: 'This website uses cookies to ensure you get the best experience on our website.',
+    messageStart: 'This website uses cookies to ensure you get the best experience on our website.',
+    messageEnd: 'for more information.',
     dismiss: 'Got it!',
     allow  : 'Allow cookies',
     deny   : 'Decline',
@@ -47,9 +47,9 @@ export default {
   elements: {
     header: '<span class="cc-header">{{header}}</span>&nbsp',
     message:
-      '<span id="cookieconsent:desc" class="cc-message">{{message}}</span>',
+      '<span id="cookieconsent:desc" class="cc-message">{{messageStart}}</span>',
     messagelink:
-      '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{href}}" rel="noopener noreferrer nofollow" target="{{target}}">{{link}}</a>{{messageEnd}}</span>',
+      '<span id="cookieconsent:desc" class="cc-message">{{messageStart}} <a aria-label="learn more about cookies" role=button tabindex="0" class="cc-link" href="{{href}}" rel="noopener noreferrer nofollow" target="{{target}}">{{link}}</a>{{messageEnd}}</span>',
     dismiss:
       `<a aria-label="dismiss cookie message" role=button tabindex="0" class="cc-btn cc-${statusDismiss}">{{dismiss}}</a>`,
     allow:
