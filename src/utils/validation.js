@@ -10,7 +10,7 @@ import { statuses } from "../constants"
 export const isValidStatus = status => statuses.indexOf(status) >= 0
 
 export const isMobile = () =>
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent )
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( window.navigator.userAgent )
 
 // The code "typeof obj === 'object' && obj !== null" allows Array objects
 export const isPlainObject = obj => typeof obj === 'object' && obj !== null && obj.constructor == Object

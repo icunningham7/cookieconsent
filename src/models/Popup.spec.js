@@ -2,111 +2,108 @@
 
 import Popup from "./Popup"
 import Base from "./Base"
+import Location from "./Location"
 import defaultOptions from "../options/popup"
 import { categories } from "../constants"
 import { mergeOptions } from "../utils"
 
 const isPopup = popup => (
-  expect( popup ).toBeInstanceOf( Object ),
-  expect( popup ).toBeInstanceOf( Base ),
-  expect( popup ).toBeInstanceOf( Popup ),
-  expect( popup ).toHaveProperty( "open" ),
-  expect( popup ).toHaveProperty( "close" ),
-  expect( popup ).toHaveProperty( "fadeIn" ),
-  expect( popup ).toHaveProperty( "afterFadeIn" ),
-  expect( popup ).toHaveProperty( "fadeOut" ),
-  expect( popup ).toHaveProperty( "afterFadeOut" ),
-  expect( popup ).toHaveProperty( "isOpen" ),
-  expect( popup ).toHaveProperty( "toggleRevokeButton" ),
-  expect( popup ).toHaveProperty( "revokeChoice" ),
-  expect( popup ).toHaveProperty( "hasAnswered" ),
-  expect( popup ).toHaveProperty( "hasConsented" ),
-  expect( popup ).toHaveProperty( "autoOpen" ),
-  expect( popup ).toHaveProperty( "setStatuses" ),
-  expect( popup ).toHaveProperty( "getStatuses" ),
-  expect( popup ).toHaveProperty( "clearStatuses" ),
-  expect( popup ).toHaveProperty( "canUseCookies" ),
-  expect( popup ).toHaveProperty( "getPositionClasses" ),
-  expect( popup ).toHaveProperty( "getPopupClasses" ),
-  expect( popup ).toHaveProperty( "getPopupInnerMarkup" ),
-  expect( popup ).toHaveProperty( "appendMarkup" ),
-  expect( popup ).toHaveProperty( "handleButtonClick" ),
-  expect( popup ).toHaveProperty( "attachCustomPalette" ),
-  expect( popup ).toHaveProperty( "getEventPath" ),
-  expect( popup ).toHaveProperty( "applyAutoDismiss" ),
-  expect( popup ).toHaveProperty( "applyRevokeButton" ),
-  expect( popup.options ).toBeInstanceOf( Object ),
-  expect( popup.userCategories ).toBeInstanceOf( Object ),
-  expect( popup.customStyles ).toBeInstanceOf( Object ),
-  expect( Object.keys( popup.userCategories ) ).toStrictEqual( categories )
+  expect(popup).toBeInstanceOf(Object),
+  expect(popup).toBeInstanceOf(Base),
+  expect(popup).toBeInstanceOf(Popup),
+  expect(popup).toHaveProperty("open"),
+  expect(popup).toHaveProperty("close"),
+  expect(popup).toHaveProperty("fadeIn"),
+  expect(popup).toHaveProperty("afterFadeIn"),
+  expect(popup).toHaveProperty("fadeOut"),
+  expect(popup).toHaveProperty("afterFadeOut"),
+  expect(popup).toHaveProperty("isOpen"),
+  expect(popup).toHaveProperty("toggleRevokeButton"),
+  expect(popup).toHaveProperty("revokeChoice"),
+  expect(popup).toHaveProperty("hasAnswered"),
+  expect(popup).toHaveProperty("hasConsented"),
+  expect(popup).toHaveProperty("autoOpen"),
+  expect(popup).toHaveProperty("setStatuses"),
+  expect(popup).toHaveProperty("getStatuses"),
+  expect(popup).toHaveProperty("clearStatuses"),
+  expect(popup).toHaveProperty("canUseCookies"),
+  expect(popup).toHaveProperty("getPositionClasses"),
+  expect(popup).toHaveProperty("getPopupClasses"),
+  expect(popup).toHaveProperty("getPopupInnerMarkup"),
+  expect(popup).toHaveProperty("appendMarkup"),
+  expect(popup).toHaveProperty("handleButtonClick"),
+  expect(popup).toHaveProperty("attachCustomPalette"),
+  expect(popup).toHaveProperty("getEventPath"),
+  expect(popup).toHaveProperty("applyAutoDismiss"),
+  expect(popup).toHaveProperty("applyRevokeButton"),
+  expect(popup.options).toBeInstanceOf(Object),
+  expect(popup.userCategories).toBeInstanceOf(Object),
+  expect(popup.customStyles).toBeInstanceOf(Object),
+  expect(Object.keys(popup.userCategories)).toStrictEqual(categories)
 )
-const hasCorrectOptions = ( popup, expecteds ) => (
-  Object.entries( expecteds ).forEach( ( [ key, value ] ) => {
-    test( "`" + key + "`", () => expect( popup.options[ key ] ).toStrictEqual( value ) )
+const hasCorrectOptions = (popup, expecteds) => (
+  Object.entries(expecteds).forEach(([key, value]) => {
+    test("`" + key + "`", () => expect(popup.options[key]).toStrictEqual(value))
   })
 )
 
-describe( "Popup Class", () => {
-  describe( "as default" , () => {
+describe("Popup Class", () => {
+  describe("as default", () => {
     const popup = new Popup()
-    test("instantiates", () => isPopup( popup ) )
-    describe( "has the correct options", () => hasCorrectOptions( popup, defaultOptions ) )
+    test("instantiates", () => isPopup(popup))
+    describe("has the correct options", () => hasCorrectOptions(popup, defaultOptions))
   })
-  describe( "with custom options", () => {
+  describe("with custom options", () => {
     const options = {
-      type     : "info",
-      container: document.getElementsByClassName( "className" )[ 0 ],
-      cookie   : {
-        name  : "test_cookie",
+      type: "info",
+      container: document.getElementsByClassName("className")[0],
+      cookie: {
+        name: "test_cookie",
         comain: "me.selfdomain.com",
         secure: true
       },
-      content  : {
-        message: "test message"
+      content: {
+        messageStart: "test message"
       },
-      elements : {
+      elements: {
         message: "<div class='test-message'>{{message}}</div>"
       },
-      layouts  : {
+      layouts: {
         testLayout: "<div class='test-layout'>{{message}}{{compliance}}</div>{{close}}"
       },
-      layout   : "testLayout",
-      theme    : "classic",
-      palette  : {
+      layout: "testLayout",
+      theme: "classic",
+      palette: {
         popup: { background: "#000000", text: "#fff", link: "#fff" }
       }
     }
-    const popup = new Popup( options )
-    test("instantiates", () => isPopup( popup ) )
-    describe( "has the correct options", () => hasCorrectOptions( popup, mergeOptions( defaultOptions, options ) ) )
+    const popup = new Popup(options)
+    test("instantiates", () => isPopup(popup))
+    describe("has the correct options", () => hasCorrectOptions(popup, mergeOptions(defaultOptions, options)))
   })
-  describe( "showLink options set to false", () => {
+  describe("showLink options set to false", () => {
     const options = {
-      type: "opt-in"
+      type: "opt-in",
+      revokable: true
     }
-    const popup = new Popup( options )
-    describe( "updates `content` options `link` and `messagelink`", () => {
+    const popup = new Popup(options)
+    describe("updates `content` options `link` and `messagelink`", () => {
       hasCorrectOptions(
         popup,
-        mergeOptions(
-          mergeOptions( defaultOptions, options ),
-          {
-            revokable: true
-          }
-        )
+        mergeOptions(defaultOptions, options),
       )
     })
   })
 
-  describe( "when `type` is not 'info'", () =>{
+  describe("when `type` is not 'info'", () => {
     const options = {
-      elements : {
-        message: "<div class='test-message'>{{message}}</div>"
+      elements: {
+        message: "<div class='test-message'>{{messageStart}}</div>"
       },
-      showLink : false
+      showLink: false
     }
-    const popup = new Popup( options )
-    describe( "revokable is set to true progmatically", () => {
+    const popup = new Popup(options)
+    describe("revokable is set to true progmatically", () => {
 
     })
   })
