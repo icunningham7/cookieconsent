@@ -43,7 +43,7 @@
   "homepage": "http://cookieconsent.osano.com/",
   "scripts": {
     "clean": "rimraf ./build/**/*",
-    "build:dev": "npx webpack --config webpack.dev.js",
+    "build:dev": "npx webpack --env development --config webpack.config.js",
     "build": "npm run clean && npx webpack --env production --config webpack.config.js",
     "build:release": "npm run build && bump -c -t package.json package-lock.json bower.json",
     "test": "jest ./src --verbose --coverage && rm -rf coverage/"

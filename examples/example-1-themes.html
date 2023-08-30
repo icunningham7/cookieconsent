@@ -50,9 +50,28 @@
         cookieconsent: CookieConsent,
         selector: document.querySelector('.example-selector'),
         popups: {
-          'Mono': {
+          'Mono Classic': {
             type: 'info',
             position: 'bottom',
+            theme: 'classic',
+            palette: palettes.mono,
+          },
+          'Mono Edgeless': {
+            type: 'info',
+            position: 'bottom',
+            theme: 'edgeless',
+            palette: palettes.mono,
+          },
+          'Mono Block': {
+            type: 'info',
+            position: 'bottom',
+            theme: 'block',
+            palette: palettes.mono,
+          },
+          'Mono Custom': {
+            type: 'info',
+            position: 'bottom',
+            theme: 'custom',
             palette: palettes.mono,
           },
           'Honeybee': {

@@ -343,6 +343,10 @@ export default class Popup extends Base {
       'cc-theme-' + opts.theme, // add the theme
     ]
 
+    if (opts.customClasses) {
+      opts.customClasses.forEach( (customClass) => classes.push(customClass));
+    }
+
     if (opts.static) {
       classes.push('cc-static')
     }

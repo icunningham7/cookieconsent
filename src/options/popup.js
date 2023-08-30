@@ -27,13 +27,13 @@ export default {
   // each item defines the inner text for the element that it references
   content: {
     header : 'Cookies used on the website!',
-    messageStart: 'This website uses cookies to ensure you get the best experience on our website.',
+    messageStart: 'This site uses cookies to provide you with more responsive and personalized service and to collect certain information about your use of the site. You can change your cookie settings through your browser. If you continue without changing your settings, you agree to our use of cookies. See our ',
     messageEnd: 'for more information.',
-    dismiss: 'Got it!',
-    allow  : 'Allow cookies',
+    dismiss: 'Only Essential',
+    allow  : 'Allow Cookies',
     deny   : 'Decline',
-    link   : 'Learn more',
-    href   : 'https://www.cookiesandyou.com',
+    link   : 'Privacy Policy',
+    href   : 'https://www.moodybible.org/privacy-policy',
     close  : '&#x274c',
     target : '_blank',
     policy : 'Cookie Policy'
@@ -142,6 +142,8 @@ export default {
   // `highlight` is optional and extends `button`. if it exists, it will apply to the first button
   // only background needs to be defined for every element. if not set, other colors can be calculated from it
   palette: null,
+
+  customClasses: [],
 
   // Some countries REQUIRE that a user can change their mind. You can configure this yourself.
   // Most of the time this should be false, but the `cookieconsent.legal` can change this to `true` if it detects that it should
