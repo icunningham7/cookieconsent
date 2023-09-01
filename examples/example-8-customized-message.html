@@ -9,6 +9,8 @@
   <title>Demo 8 - JavaScript API</title>
 
   <link href="examples/style.css" rel="stylesheet">
+  <link href="examples/style-extra.css" rel="stylesheet">
+
 
 <body class="example7" role="document">
 
@@ -49,13 +51,15 @@
 
         <a href="examples/example-7-javascript-api.html" class="page-switcher page-switcher-prev"
           title="Previous demo">&#9664;</a>
-
+          
+        <footer></footer>
       </div>
     </div>
   </div>
 
   <script src="examples/script.js"></script>
-  <script src="build/cookieconsent.min.js"></script>
+  <script src="src/bundle.js"></script>
+  <!-- <script src="build/cookieconsent.min.js"></script> -->
   <script>
 
     const logingElem = document.getElementById('console');
@@ -66,19 +70,13 @@
     }
 
     const cc = new CookieConsent({
+      container: document.querySelector('footer'),
       type: 'opt-in',
       palette: {
         popup: { background: "#eaf7f7", text: "#5c7291" },
         button: { background: "#56cbdb", text: "#ffffff" }
       },
       customClasses: [ "testGrep", "fancyGrep" ],
-      content: {
-        customClasses: "fancyGrep"
-      },
-      elements: {
-        messagelink:
-          '<span id="cookieconsent:desc" class="cc-message text-sm md:text-base md:col-span-6">{{messageStart}} <a aria-label="learn more about our use of cookies" role=button tabindex="0" class="cc-link" href="{{href}}" rel="noopener noreferrer nofollow" target="{{target}}">{{link}}</a></span>',
-      }
     })
     cc.on("popupOpened", function () {
       log('<em>popupOpened</em> event fired');

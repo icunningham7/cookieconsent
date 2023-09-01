@@ -62,6 +62,5 @@ module.exports = function (env, argv) {
         }
       ]
     },
-    watch: !env.production
   }
 }

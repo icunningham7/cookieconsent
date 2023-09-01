@@ -79,7 +79,7 @@ export default {
   //  - {{classes}} is where additional classes get added
   //  - {{children}} is where the HTML children are placed
   window:
-    '<div role="dialog" aria-live="polite" aria-label="cookieconsent" aria-describedby="cookieconsent:desc" class="cc-window {{classes}}"><!--googleoff: all-->{{children}}<!--googleon: all--></div>',
+    '<div data-nosnippet role="dialog" aria-live="polite" aria-label="cookieconsent" aria-describedby="cookieconsent:desc" class="cc-window {{classes}}"><!--googleoff: all-->{{children}}<!--googleon: all--></div>',
   
   modal: '',
 
