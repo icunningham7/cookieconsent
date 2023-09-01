@@ -1,35 +1,11 @@
 "use strict"
 
+const TerserPlugin = require("terser-webpack-plugin")
 const join = require("path").join
-// const common = require( "./webpack.common.js" )
-// const exp = Object.assign({}, common, {
-//     entry: join( __dirname, 'src', 'index.js' ),
-//     module: {
-//       rules: [
-//         {
-//           test   : /\.js?$/,
-//           loader : "babel-loader",
-//           options: {
-//             root    : __dirname,
-//             rootMode: "upward-optional"
-//           }
-//         },
-//         {
-//           test: /\.scss?$/,
-//           use : [
-//             "style-loader", // creates style nodes from JS strings
-//             "css-loader", // translates CSS into CommonJS
-//             "sass-loader", // compiles Sass to CSS, using Node Sass by default
-//             "postcss-loader"
-//           ]
-//         }
-//       ]
-//     }
-//   })
-//   module.exports = exp
+
 module.exports = function (env, argv) {
   return {
-    mode: env.production ? 'production' : 'develompent',
+    mode: env.production ? 'production' : 'development',
     entry: join(__dirname, 'src', 'index.js'),
     output: env.production ? {
       path: join(__dirname, 'build'),
@@ -39,28 +15,31 @@ module.exports = function (env, argv) {
       filename: 'bundle.js'
     },
     optimization: env.production ? {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        terserOptions: {
+          compress: {
+            defaults: true,
+            arrows: true,
+            drop_console: true,
+            ecma: 2015,
+          },
+        },
+      })],
       moduleIds: 'size',
       mangleWasmImports: true,
-      // concatenateModules: false
     } : {},
     module: {
       rules: env.production ? [
         {
-          // test: /\.js?$/,
-          // use: {
-          //   loader: "string-replace-loader",
-          //   options: {
-          //     search: "(?<=>)\\n\ {2,}|\\n\ {2,}(?=<)",
-          //     replace: () => '',
-          //     flags: "g"
-          //   }
-          // },
           test: /\.s[ac]ss$/i,
           use: [
-            "style-loader",
+            // "style-loader",
             "css-loader", 
             "sass-loader",
-            "postcss-loader"
+            "postcss-loader",
           ]
         }
       ] : [
@@ -83,6 +62,5 @@ module.exports = function (env, argv) {
         }
       ]
     },
-    watch: !env.production
   }
 }
